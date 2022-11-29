@@ -1,0 +1,28 @@
+{
+  "name": "web-rescript-template",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "A starting point for using ReScript on the web",
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "re:build": "rescript",
+    "re:start": "rescript build -w",
+    "emit-types": "tsc --emitDeclarationOnly",
+    "test": "vitest",
+    "test-cov": "vitest run --coverage",
+    "fmt": "prettier src --write"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.25.3",
+    "gentype": "^4.5.0",
+    "prettier": "^2.8.0",
+    "rescript": "^10.0.1",
+    "typescript": "^4.9.3",
+    "vitest": "^0.25.3"
+  },
+  "engines": {
+    "node": "18.x",
+    "pnpm": "7.x"
+  }
+}

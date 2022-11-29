@@ -1,0 +1,5 @@
+.bsb.lock
+.merlin
+coverage
+lib
+node_modules
