@@ -1,18 +1,32 @@
-import { vi } from "vitest"
-import { describe, expect, it } from "vitest"
+import * as crypto from "node:crypto"
 
-import { hey } from "./Util.bs"
+import { beforeAll, describe, expect, vi, it } from "vitest"
 
-describe("hey", () => {
+import { random_int_reduce } from "./Util.bs"
+
+describe("random_int_reduce", () => {
+	beforeAll(() => {
+		vi.stubGlobal("crypto", {
+			getRandomValues: (x) => crypto.webcrypto.getRandomValues(x),
+		})
+	})
 	it("should return a number", () => {
-		let res = hey()
+		let res = random_int_reduce(0, 1)
 
 		expect(res).toBeTypeOf("number")
 	})
-	it("should log to the console", () => {
-		let spy = vi.spyOn(console, "log")
-		hey()
 
-		expect(spy).toBeCalledTimes(1)
+	it("should return a number in the range", () => {
+		let res = random_int_reduce(0, 10)
+
+		expect(res).toBeGreaterThanOrEqual(0)
+		expect(res).toBeLessThanOrEqual(10)
+	})
+
+	it("should work with big numbers, too", () => {
+		let res = random_int_reduce(1_000_000, 100_000_000)
+
+		expect(res).toBeGreaterThanOrEqual(1_000_000)
+		expect(res).toBeLessThanOrEqual(100_000_000)
 	})
 })
