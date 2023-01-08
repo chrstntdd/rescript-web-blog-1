@@ -1,21 +1,22 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "removeComments": false,
-    "rootDir": "src",
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext",
-    "jsx": "preserve"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.*"]
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"declarationDir": "./dist/types",
+		"esModuleInterop": true,
+		"lib": ["ESNext", "DOM"],
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"noImplicitAny": false,
+		"removeComments": false,
+		"rootDirs": ["src", "e2e"],
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "esnext",
+		"jsx": "preserve",
+		"allowJs": false
+	},
+	"include": ["src/**/*.gen.tsx", "./bench.ts", "e2e/**/*"],
+	"exclude": ["src/**/*.test.*", "src/**/*.bs.js"]
 }

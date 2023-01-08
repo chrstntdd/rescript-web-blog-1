@@ -1,28 +1,41 @@
 {
-  "name": "web-rescript-template",
-  "version": "0.0.0",
-  "license": "MIT",
-  "description": "A starting point for using ReScript on the web",
-  "type": "module",
-  "sideEffects": false,
-  "scripts": {
-    "re:build": "rescript",
-    "re:start": "rescript build -w",
-    "emit-types": "tsc --emitDeclarationOnly",
-    "test": "vitest",
-    "test-cov": "vitest run --coverage",
-    "fmt": "prettier src --write"
-  },
-  "devDependencies": {
-    "@vitest/coverage-c8": "^0.25.3",
-    "gentype": "^4.5.0",
-    "prettier": "^2.8.0",
-    "rescript": "^10.0.1",
-    "typescript": "^4.9.3",
-    "vitest": "^0.25.3"
-  },
-  "engines": {
-    "node": "18.x",
-    "pnpm": "7.x"
-  }
+	"name": "web-rescript-template",
+	"version": "0.0.0",
+	"license": "MIT",
+	"description": "A starting point for using ReScript on the web",
+	"type": "module",
+	"sideEffects": false,
+	"scripts": {
+		"re:build": "rescript",
+		"re:start": "rescript build -w",
+		"build": "esbuild src/Util.gen.tsx --bundle --minify --format=esm --external:rescript --outfile=dist/util.js",
+		"emit-types": "tsc --emitDeclarationOnly",
+		"test": "vitest",
+		"test-cov": "vitest run --coverage",
+		"fmt": "prettier src --write",
+		"test:pbt-node": "uvu -r tsm tests '.*.pbtest-node.ts'",
+		"test:pbt-node-plain": "NODE_ENV=production node tests/js/random.pbtest-node.js",
+		"test:pbt-browser": "playwright test ./e2e/browser-pbt.test.ts",
+		"test:pbt-bun": "bun ./tests/random.pbtest.ts",
+		"test:pbt-bench": "hyperfine -i --warmup 5 'pnpm test:pbt-node' 'pnpm test:pbt-node-plain' 'bun test:pbt-node' 'bun test:pbt-bun'"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.29.2",
+		"@types/node": "^18.11.18",
+		"@vitest/coverage-c8": "^0.26.3",
+		"benny": "^3.7.1",
+		"esbuild": "^0.16.15",
+		"fast-check": "^3.5.0",
+		"gentype": "^4.5.0",
+		"prettier": "^2.8.2",
+		"rescript": "^10.0.1",
+		"tsm": "^2.3.0",
+		"typescript": "^4.9.4",
+		"uvu": "^0.5.6",
+		"vitest": "^0.26.3"
+	},
+	"engines": {
+		"node": "18.x",
+		"pnpm": "7.x"
+	}
 }
