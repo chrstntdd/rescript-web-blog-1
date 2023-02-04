@@ -1,7 +1,11 @@
 import fc from "fast-check"
 import { suite } from "uvu"
 
-import { random_int_reduce, random_int_rec } from "../src/Util.bs"
+import {
+	random_int_reduce,
+	random_int_rec,
+	random_int_no_loop,
+} from "../src/Util.bs"
 
 let baseTest = suite("base")
 
@@ -69,5 +73,6 @@ let sharedOptions = { numRuns: 1000 } satisfies Parameters<
 >[1]
 makeBaseTest(random_int_reduce, sharedOptions)
 makeBaseTest(random_int_rec, sharedOptions)
+makeBaseTest(random_int_no_loop, sharedOptions)
 
 baseTest.run()

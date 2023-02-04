@@ -87,3 +87,19 @@ let random_int_rec = (. ~min, ~max) => {
 
   min +. remainder_float_exn(~dividend, ~divisor=range)
 }
+
+@scope("crypto")
+external getRandomValuesU32: Js.TypedArray2.Uint32Array.t => Js.TypedArray2.Uint32Array.t =
+  "getRandomValues"
+
+@genType
+let random_int_no_loop = (. ~min, ~max) => {
+  let range = Js.Math.abs_float(max -. min) +. 1.
+  let dividend =
+    Js.TypedArray2.Uint32Array.fromLength(1)
+    ->getRandomValuesU32
+    ->Js.TypedArray2.Uint32Array.unsafe_get(0)
+    ->Belt.Float.fromInt
+
+  min +. remainder_float_exn(~dividend, ~divisor=range)
+}

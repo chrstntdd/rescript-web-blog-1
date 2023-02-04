@@ -77,6 +77,12 @@ function random_int_rec(min, max) {
   return min + remainder_float_exn(dividend, range);
 }
 
+function random_int_no_loop(min, max) {
+  var range = Math.abs(max - min) + 1;
+  var dividend = crypto.getRandomValues(new Uint32Array(1))[0];
+  return min + remainder_float_exn(dividend, range);
+}
+
 export {
   remainder_float ,
   random_int_reduce ,
@@ -84,5 +90,6 @@ export {
   remainder_float_exn ,
   accumulate_uint8_entries ,
   random_int_rec ,
+  random_int_no_loop ,
 }
 /* No side effect */

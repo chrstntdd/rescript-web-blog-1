@@ -10,3 +10,8 @@ export const random_int_rec: (_1:{ readonly min: number; readonly max: number })
   const result = UtilBS.random_int_rec(Arg1.min, Arg1.max);
   return result
 };
+
+export const random_int_no_loop: (_1:{ readonly min: number; readonly max: number }) => number = function (Arg1: any) {
+  const result = UtilBS.random_int_no_loop(Arg1.min, Arg1.max);
+  return result
+};
